@@ -1,4 +1,5 @@
 from auth import *
+from pprint import pprint
 
 class GPTConversation:
     def __init__(self, message="You are a helpful assistant."):
@@ -11,11 +12,11 @@ class GPTConversation:
     def chat(self, prompt):
         self.messages.append({"role": "user", "content": prompt})
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4",
             messages=self.messages
         )
         # Append the response to the messages
         self.messages.append({"role": "assistant", "content": response['choices'][0]['message']['content']})
         # Print the response
         print(response['choices'][0]['message']['content'])
-        print(self.messages)
+        #pprint(self.messages)
